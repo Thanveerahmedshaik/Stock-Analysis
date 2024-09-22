@@ -1448,88 +1448,529 @@ bank_stocks.xs('Close', axis = 1 ,level = 1).iplot(kind = 'line')
 ```
 
    
+### Moving Averages
+
+Lets analyze the moving average for these stocks in the year 2008
 
 
 
+```python
+BAC.loc['2008-01-01':'2008-12-31'].rolling(window=30).std().head(30)
+
+```
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Open</th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Close</th>
+      <th>Adj Close</th>
+      <th>Volume</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2008-01-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-04</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-08</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-09</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-10</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-14</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-15</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-16</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-17</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-18</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-22</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-23</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-24</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-25</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-28</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-29</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-30</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-01-31</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-04</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-05</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-06</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-07</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-08</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-11</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-12</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2008-02-13</th>
+      <td>2.490761</td>
+      <td>2.092302</td>
+      <td>2.555124</td>
+      <td>2.313858</td>
+      <td>1.698958</td>
+      <td>2.104923e+07</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
+### Plot the rolling 30 day average against the Close Price for Bank Of America's stock for the year 2008
 
 
+```python
+BAC.loc['2008-01-01':'2008-12-31']['Close'].rolling(window=30).mean().plot(figsize = (10,4), label = '30 Day Average of Close Price')
+BAC.loc['2008-01-01':'2008-12-31']['Close'].plot(label = 'Close Price')
+plt.legend()
+```
+
+![png](output_57_1.png)
+    
 
 
+**Observations**
+
+- _If you see the difference between rolling average and actual closing stock prices, the real stock prices can have sharp declines and inclines and what the 30 day average does is it ignores those sharp edges and smoothens the data based on average of the last 30 days at each point. This is basically used to analyse the stock data so the sudden falls can be ignored and its not the part of the stock analysis unless it is sustained over a longer period of time._
+- _If u see the data between 2008-05 to 2008-07 the stock price started to fall but the average price was still high and because the fall sustained over a period of time the avg value came down as well. The avg values has much more roundish edge and the actual closing price has a sharp edge and the same thing happens between the period 2008-07 to 2008-11 as well._
 
 
+### Create a heatmap of the correlation between the stocks Close price.
 
 
+```python
+bank_stocks.xs('Close', axis=1, level=1).corr()
+```
 
+<div>
 
-
-
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Bank Tickers</th>
+      <th>BAC</th>
+      <th>C</th>
+      <th>GS</th>
+      <th>JPM</th>
+      <th>MS</th>
+      <th>WFC</th>
+    </tr>
+    <tr>
+      <th>Bank Tickers</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>BAC</th>
+      <td>1.000000</td>
+      <td>0.971516</td>
+      <td>0.550898</td>
+      <td>0.103874</td>
+      <td>0.944218</td>
+      <td>0.008542</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>0.971516</td>
+      <td>1.000000</td>
+      <td>0.434123</td>
+      <td>0.003515</td>
+      <td>0.933609</td>
+      <td>-0.068536</td>
+    </tr>
+    <tr>
+      <th>GS</th>
+      <td>0.550898</td>
+      <td>0.434123</td>
+      <td>1.000000</td>
+      <td>0.685286</td>
+      <td>0.683792</td>
+      <td>0.499897</td>
+    </tr>
+    <tr>
+      <th>JPM</th>
+      <td>0.103874</td>
+      <td>0.003515</td>
+      <td>0.685286</td>
+      <td>1.000000</td>
+      <td>0.250427</td>
+      <td>0.940269</td>
+    </tr>
+    <tr>
+      <th>MS</th>
+      <td>0.944218</td>
+      <td>0.933609</td>
+      <td>0.683792</td>
+      <td>0.250427</td>
+      <td>1.000000</td>
+      <td>0.131835</td>
+    </tr>
+    <tr>
+      <th>WFC</th>
+      <td>0.008542</td>
+      <td>-0.068536</td>
+      <td>0.499897</td>
+      <td>0.940269</td>
+      <td>0.131835</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
 
 
 
 ```python
-
+sns.heatmap(bank_stocks.xs('Close', axis=1, level=1).corr(),cmap = 'crest', annot = True)
 ```
+
+
+
+
+    
+![png](output_61_1.png)
+
+
+
+**Observations:** 
+- _If you see correlation between bank of america to bank of america is same ._
+- _Correlation basically says if the stock price for the bank of america/any bank increases what is the movement of the stock price for the other banks. So it basically denotes the linear relationship between those banks._
+-  _+ve relationship means if price of one bank increases, price of the other bank increases as well, -ve relation will show movement on the negative direction compared to the stock_.
+-  _Correlation always varies between -1 to 1._
+-  _+ve 1 could mean perfect correlation which means both the stock goes up or down at the same time._
+-  _-ve 1 means everytime the stock goes up the other stock goes down._
+-  _Correlation of zero(0) means that they dont have correlation among themselves. The movement of one stock has no relationship with the movement of the other stock._
+-  _These are used by the hedgefunds and other guys who take lot of risk to hedge their risk based on the movement of the stock price. So if the are betting on BAC to go up it has a -ve correlation with some other stock and they can make some position in the other stock as well. So just in case if BAC goes down the other stock might go up there by they might not be losing as much money._
+-  _You can clearly see the BAC has a strong correlationship with the City Bank and Morgan Stanley Banks where as a very weak correlationship with WellsFargo. Even with JPMorgan it is 0.1 which is a weak correlation and close to zero ._
+
+#### Use seaborn's clustermap to cluster the correlations together:
 
 
 ```python
-
+sns.clustermap(bank_stocks.xs('Close', axis=1, level=1).corr(),figsize=(6,6),cmap = 'crest',annot= True)
 ```
+
+![png](output_64_1.png)
+
+
+**Observations**
+
+- _Basically what clustermap does is that it creates a cluster based on the closed data._
+- _If you see on the both X and the Y axis, the map BAC lies between MS and C whereas in the heatmap its had very strong relationship with the City bank and Morgan Stanley and Wells Fargo and JPMorgan were close to eachother.So in the cluster map WFC and JPM has put together._
+ 
+
+## USING CUFFLINKS
+
+#### Use .plot(kind='candle') to create a candle plot of Bank of americas stock from Jans 1st 2015 to Jan 1st 2016.
 
 
 ```python
+BAC.loc['2015-01-01':'2016-01-01'].iplot(kind='candle')
 
 ```
+
+
+#### Use .ta_plot(study='sma') to create a Simple Moving Average plot of Morgan Stanley for the year 2015.
 
 
 ```python
-
+MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='sma',period=[14,21,55])
 ```
+
+**Observations**
+- _Simple moving average smoothens the edges of the stock._
+- _period=[14,21,55] -> This gives the simple moving averages of 14th 21 and 55th day._
 
 
 ```python
-
+MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='rsi')
 ```
+
+
+
+#### Use .ta_plot(study='boll') to create a Bollinger Band plot for Bank of Americs for the year 2015.
 
 
 ```python
-
+BAC.loc['2015-01-01':'2015-12-31']['Close'].ta_plot(study='boll')
 ```
 
+**Observations**
+- _What the bollinger does is it creates a simple moving average and has a upper line and a lower line aswell._
 
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-$$
-r_t = \frac{P_t - P_t-1}{ P_t-1} -
-$$
-```
-
-
-      Cell In[124], line 1
-        $$
-        ^
-    SyntaxError: invalid syntax
+Just update the start and end dates, and return the codes to analyze the last 10 years performance.
 
 
 
 
-```python
 
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
