@@ -1917,7 +1917,7 @@ sns.clustermap(bank_stocks.xs('Close', axis=1, level=1).corr(),figsize=(6,6),cma
 BAC.loc['2015-01-01':'2016-01-01'].iplot(kind='candle')
 
 ```
-
+![png](output_68_0.png)
 
 #### Use .ta_plot(study='sma') to create a Simple Moving Average plot of Morgan Stanley for the year 2015.
 
@@ -1925,6 +1925,8 @@ BAC.loc['2015-01-01':'2016-01-01'].iplot(kind='candle')
 ```python
 MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='sma',period=[14,21,55])
 ```
+
+![png](output_70_1.png)
 
 **Observations**
 - _Simple moving average smoothens the edges of the stock._
@@ -1935,6 +1937,7 @@ MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='sma',period=[14,21,55]
 MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='rsi')
 ```
 
+![png](output_72_1.png)
 
 
 #### Use .ta_plot(study='boll') to create a Bollinger Band plot for Bank of Americs for the year 2015.
@@ -1943,6 +1946,8 @@ MS.loc['2015-01-01':'2016-01-01']['Close'].ta_plot(study='rsi')
 ```python
 BAC.loc['2015-01-01':'2015-12-31']['Close'].ta_plot(study='boll')
 ```
+![png](output_74_1.png)
+
 
 **Observations**
 - _What the bollinger does is it creates a simple moving average and has a upper line and a lower line aswell._
