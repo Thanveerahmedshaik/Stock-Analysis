@@ -1995,7 +1995,7 @@ This project is part of my portfolio, showcasing the Python skills essential for
 
 
 - **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/thanveer-ahmed-shaik/)
-- **Mail**: [shaikthanveerahmed123@gmail.com]
+- **Mail**: shaikthanveerahmed123@gmail.com
 
 
 
