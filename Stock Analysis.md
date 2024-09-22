@@ -99,8 +99,7 @@ WFC
 
 <div>
 
-
-
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -256,23 +255,7 @@ bank_stocks
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-
-    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -604,14 +587,13 @@ bank_stocks
 
 
 
-#### Set the column name levels 'Bank Tickers' and 'Stock info':
+### Set the column name levels 'Bank Tickers' and 'Stock info':
 
 
 ```python
 bank_stocks.columns.names =['Bank Tickers', 'Stock Info']
 bank_stocks.columns.names
 ```
-
 
 
 
@@ -630,23 +612,7 @@ bank_stocks.head()
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-
-    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr>
@@ -851,18 +817,7 @@ bank_stocks.xs('Close',axis=1,level=1) # Returns the dataframe with Close column
 
 <div>
 <style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1046,19 +1001,7 @@ returns
 
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1210,7 +1153,7 @@ sns.pairplot(returns)
 
 
     
-![png](output_29_1.png)
+![png](output_31_1.png)
     
 
 
@@ -1219,11 +1162,311 @@ sns.pairplot(returns)
 - _Off diagonal elements are bivariant data_
 - _What pairplot does here is it creates a group of scatter plots for each pair of the numerical data in the data frame,For exit will create a 'BAC' vs 'C' scatterplot, 'BAC' vs 'GS' scatter plot and so on._
 - _So we have all of these tickers/banks on X-axis and the same banks as well as on the Y-axis_.
-- _So if you compare 'WFC Returns' to the 'WFC Returns' it is a univariant data so therefore we have a histogram._
-- _If you compare 'WFC Returns' to the other banks we have the scatter plots to analyse the data_
+- _So if you compare 'WFC Returns' to the 'WFC Returns' it is a univariant data so therefore we have a Histogram._
+- _If you compare 'WFC Returns' to the other banks we have the scatter plots to analyse the data._
 - _Its very important to check the scales for it , almost everything are in decimals on both X and Y axis._
 - _Sometimes based on the data you can get different scales for one of the columns and that graph will look very different._
-- _ 
+- _Lets look at the 'MS Returns' graph is going from -0.25 to 0.75 and there is only one outlier point that is there at 0.75 which makes the slope is much higher but if you ignore the outlier the slope will be much equal as the distance from zero on both sides is almost equal for rest of the datapoints._ 
+- _Same with the 'Citi Group' except few(countable) points most of them lies in the range of -0.25 to 0.25._
+- _So if you analyse this for 'BAC Returns' compared to other banks, there is a very strong correlation between these banks or the returns of these banks as the X-axis goes up Y-axis goes up as well and that pattern is prevalent for all combinations of the all pairs of the banks here._
+
+
+
+```python
+returns.corr()
+```
+
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BAC Returns</th>
+      <th>C Returns</th>
+      <th>GS Returns</th>
+      <th>JPM Returns</th>
+      <th>MS Returns</th>
+      <th>WFC Returns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>BAC Returns</th>
+      <td>1.000000</td>
+      <td>0.802752</td>
+      <td>0.685271</td>
+      <td>0.815410</td>
+      <td>0.643840</td>
+      <td>0.828337</td>
+    </tr>
+    <tr>
+      <th>C Returns</th>
+      <td>0.802752</td>
+      <td>1.000000</td>
+      <td>0.668989</td>
+      <td>0.739045</td>
+      <td>0.634352</td>
+      <td>0.717386</td>
+    </tr>
+    <tr>
+      <th>GS Returns</th>
+      <td>0.685271</td>
+      <td>0.668989</td>
+      <td>1.000000</td>
+      <td>0.738671</td>
+      <td>0.805155</td>
+      <td>0.662847</td>
+    </tr>
+    <tr>
+      <th>JPM Returns</th>
+      <td>0.815410</td>
+      <td>0.739045</td>
+      <td>0.738671</td>
+      <td>1.000000</td>
+      <td>0.646711</td>
+      <td>0.826276</td>
+    </tr>
+    <tr>
+      <th>MS Returns</th>
+      <td>0.643840</td>
+      <td>0.634352</td>
+      <td>0.805155</td>
+      <td>0.646711</td>
+      <td>1.000000</td>
+      <td>0.598681</td>
+    </tr>
+    <tr>
+      <th>WFC Returns</th>
+      <td>0.828337</td>
+      <td>0.717386</td>
+      <td>0.662847</td>
+      <td>0.826276</td>
+      <td>0.598681</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
+**Observations**
+- _We can see the correlation in the matrix format._
+- _We can use these later to create a heat map._
+- _'BAC Returns have strong relationship with the 'City Bank', 'JPMorgan' and 'WellsFargo' compared to the 'GoldmanSachs' and 'Morgan Stanley' banks._
+
+### Using this returns DataFrame, figure out on what dates each bank stock had the best and worst single day returns. Did anything significant happen on those days?
+
+
+```python
+#Best single day returns
+returns.max()  #Returns the max value of each column 
+```
+
+
+
+
+    BAC Returns    0.352691
+    C Returns      0.578249
+    GS Returns     0.264678
+    JPM Returns    0.250967
+    MS Returns     0.869835
+    WFC Returns    0.327645
+    dtype: float64
+
+
+
+
+```python
+#Best single day returns
+returns.idxmax() #Returns the index of the max value
+```
+
+
+
+
+    BAC Returns   2009-04-09
+    C Returns     2008-11-24
+    GS Returns    2008-11-24
+    JPM Returns   2009-01-21
+    MS Returns    2008-10-13
+    WFC Returns   2008-07-16
+    dtype: datetime64[ns]
+
+
+
+
+```python
+#Worst single day returns
+returns.idxmin() #Returns the index of the min value
+```
+
+
+
+
+    BAC Returns   2009-01-20
+    C Returns     2009-02-27
+    GS Returns    2009-01-20
+    JPM Returns   2009-01-20
+    MS Returns    2008-10-09
+    WFC Returns   2009-01-20
+    dtype: datetime64[ns]
+
+
+
+**Did anything significant happen on those days?**
+
+**Best days**
+- _If you notice the JPMorgan returns the best performance day(2009-01-21) was exactly after the worst performance day(2009-01-20) and the reason for that was it received a 700 billion dollar bailout from the federal reserve._
+
+
+
+
+**Worst days**
+- _If you look carefully four of the banks Bank of America, Goldman Sachs, JPMorgan and Wells Fargo had the worst return on the same day._
+
+   *What happened exactly?*
+  
+- _On the particular day 2009-01-20, The Icelands banks collapsed._
+  
+- _InShort, About Iceland banks, During 2000-2007 the Icelandic banks were privatised and saw quiet a bit of Boom years so much so that the country's entire economy and GDP became dependent on the performance of the banks, and when the economy collapsed theirs banks and government collapsed . That might have created a widespread of panic in the market which might be one of the reasons for the decline on the particular day [[ 1 ](https://en.wikipedia.org/wiki/2009_Icelandic_financial_crisis_protests)][[2 . Finacncial crisis 2009](https://en.wikipedia.org/wiki/2007%E2%80%932008_financial_crisis)]._
+  
+
+
+- For the City Bank,On 27th February 2009,The US government has reached a deal to take a stake of 30 to 40 percent , which raised concerns among the Investors regarding the nationalisation of the banks and thats why it has the biggest decline of its stock worldwide on that particular day.
+
+[More Details](https://www.theguardian.com/business/2009/jan/20/stock-market-drop-obama-inauguration)
+
+
+### Take a look at the standard deviation of the returns, which stock would you classify as the riskiest over the entire period? Which would u classify as the riskiest for the year 2015?
+
+
+```python
+#For the entire 10 years period (More riskier higher the std.deviation)
+returns.std()
+
+```
+
+
+
+
+    BAC Returns    0.036647
+    C Returns      0.038672
+    GS Returns     0.025390
+    JPM Returns    0.027667
+    MS Returns     0.037819
+    WFC Returns    0.030238
+    dtype: float64
+
+
+
+**Observations**
+
+- _There isnt much to differentiate between these stocks. Statistically, you can say Citi bank is the most riskiest but its only by the bearest of margin really insignificant. Practically they all had similiar risk._
+
+
+```python
+#For year 2015
+```
+
+
+```python
+returns.loc['2015-01-01':'2015-12-31'].std()
+```
+
+
+
+
+    BAC Returns    0.016163
+    C Returns      0.015289
+    GS Returns     0.014046
+    JPM Returns    0.014017
+    MS Returns     0.016249
+    WFC Returns    0.012591
+    dtype: float64
+
+
+
+**Obseravtion** 
+
+- _There isnt much difference among these stocks they all posses similiar risk._
+
+### Create a histplot using seaborn of the 2015 returns for the Morgan Stanley
+
+
+
+```python
+sns.histplot(returns.loc['2015-01-01':'2015-12-31']['MS Returns'], color ='g', bins =50, kde = True)
+```
+
+
+
+
+    <Axes: xlabel='MS Returns', ylabel='Count'>
+
+
+
+
+    
+![png](output_47_1.png)
+    
+
+
+**Observations** 
+- _If you see the data most of the data is in between -0.02 and 0.02. If you imagine this in percentage by multiplying the numbers with 100,so most of the daily return within plus or  minus 2% of the previous day number._
+
+### Create a histplot using seaborn of the 2008 returns for the CitiGroup
+
+
+```python
+sns.histplot(returns.loc['2008-01-01':'2008-12-31']['C Returns'], color = 'r', bins = 50, kde= True)
+```
+
+
+
+
+    <Axes: xlabel='C Returns', ylabel='Count'>
+
+
+
+
+    
+![png](output_50_1.png)
+    
+
+
+**Observations**
+
+- _If you notice the Kde graph there is a long tail on the right side that is because of some point 0.6 . Basically it says that they have a day where there is very high return approx. 6 percent but its only few days maybe only one or two days._
+
+### Create a line plot showing Close price for each bank for the entire index of time.
+
+
+```python
+bank_stocks.xs('Close', axis = 1 ,level = 1).iplot(kind = 'line')
+```
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
