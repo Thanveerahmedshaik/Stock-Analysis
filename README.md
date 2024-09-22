@@ -816,7 +816,7 @@ bank_stocks.xs('Close',axis=1,level=1) # Returns the dataframe with Close column
 
 
 <div>
-<style scoped>
+
 
 <table border="1" class="dataframe">
   <thead>
